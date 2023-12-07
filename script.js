@@ -29,6 +29,24 @@ document.getElementById("caricaimmagini2").addEventListener("click",async functi
     
     popolaPagina(fotografi2.photos)
 })
+document.getElementById("buttonricerca").addEventListener("click",async function(){
+  document.getElementById("tabella").classList.add("d-none")
+  document.getElementById("tabella2").classList.remove("d-none")
+  let cerca=document.getElementById("nomericerca").value
+  const urlApi3= await fetch(`https://api.pexels.com/v1/search?query=${cerca}`,{
+  
+  
+  headers:{
+      Authorization: "ASaGYFyuZZDboUVk8I6aUiQebwhfxJBmclZSKYB4MAuE3zKrZQLKuUXz"
+      
+  }
+   })
+  fotografi3= await urlApi3.json()
+  console.log(fotografi3)
+  
+  
+  popolaPagina(fotografi3.photos)
+})
 
 
 
@@ -76,7 +94,7 @@ function creaCard(fotografo){
                 bottone2
               </button>
             </div>
-            <small class="text-muted">9 mins</small>
+            <small class="text-muted">${fotografo.id}</small>
           </div>
         </div>
       </div>
